@@ -90,18 +90,18 @@ if __name__ == '__main__':
 
 	
 	ax1.plot(t[:training_end], ref_coeff_training[:, pos1], linestyle='-', color=charcoal, lw=1.25, label='ref data (n = 3.8M)')
-	ax1.plot(t, OpInf_red_coeff_with_reg[:, pos1], linestyle='-', color=color1, lw=1.25, label='std OpInf with reg (r = 24)')
-	ax1.plot(t[:cutoff], OpInf_red_coeff_mild_reg[:cutoff, pos1], linestyle='-', color=color2, lw=1.25, label='OpInf with mild reg (r = 24)')
+	ax1.plot(t, OpInf_red_coeff_with_reg[:, pos1], linestyle='-', color=color1, lw=1.25, label='std OpInf with reg (r = {})'.format(r1))
+	ax1.plot(t[:cutoff], OpInf_red_coeff_mild_reg[:cutoff, pos1], linestyle='-', color=color2, lw=1.25, label='OpInf with mild reg (r = {})'.format(r2))
 	ax1.set_xlabel('time [sec]')
-	ax1.set_ylabel('red coeff for POD mode = 1')
+	ax1.set_ylabel('red coeff for POD mode = {}'.format(pos1 + 1))
 	ax1.axvline(t[training_end - 1], lw=1.25, linestyle='--', color=charcoal)
 
 
 	ax2.plot(t[:training_end], ref_coeff_training[:, pos2], linestyle='-', color=charcoal, lw=1.25, label='ref data (n = 3.8M)')
-	ax2.plot(t, OpInf_red_coeff_with_reg[:, pos2], linestyle='-', color=color1, lw=1.25, label='std OpInf with reg (r = 24)')
-	ax2.plot(t[:cutoff], OpInf_red_coeff_mild_reg[:cutoff, pos2], linestyle='-', color=color2, lw=1.25, label='OpInf with mild reg (r = 24)')
+	ax2.plot(t, OpInf_red_coeff_with_reg[:, pos2], linestyle='-', color=color1, lw=1.25, label='std OpInf with reg (r  = {})'.format(r1))
+	ax2.plot(t[:cutoff], OpInf_red_coeff_mild_reg[:cutoff, pos2], linestyle='-', color=color2, lw=1.25, label='OpInf with mild reg (r  = {})'.format(r2))
 	ax2.set_xlabel('time [sec]')
-	ax2.set_ylabel('red coeff for POD mode = 1')
+	ax2.set_ylabel('red coeff for POD mode = {}'.format(pos2 + 1))
 	ax2.axvline(t[training_end - 1], lw=1.25, linestyle='--', color=charcoal)
 	
 	x_pos_all 	= np.array([0.0010, 0.0012, 0.0012474, 0.0014])

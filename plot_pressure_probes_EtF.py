@@ -89,9 +89,9 @@ if __name__ == '__main__':
 
 	
 	ax1.plot(t[:plotting_end], FOM_p[pos1, :plotting_end]/1e6, linestyle='-', color=charcoal, lw=1.25, label='full-order model (n = 3.8M)')
-	ax1.plot(t[:training_end], SD_OpInf_p_with_reg[pos1, :training_end]/1e6, linestyle='-', color=color1, lw=1.25, label='std OpInf with reg (r = 24)')
+	ax1.plot(t[:training_end], SD_OpInf_p_with_reg[pos1, :training_end]/1e6, linestyle='-', color=color1, lw=1.25, label='std OpInf with reg (r = {})'.format(r1))
 	ax1.plot(t[training_end:], SD_OpInf_p_with_reg[pos1, training_end:]/1e6, linestyle=linestyle3, color=color1, lw=1.25)
-	ax1.plot(t[:no_reg_cutoff], SD_OpInf_p_no_reg[pos1, :no_reg_cutoff]/1e6, linestyle='-', color=color2, lw=1.25, label='OpInf with mild reg (r = 24)')
+	ax1.plot(t[:no_reg_cutoff], SD_OpInf_p_no_reg[pos1, :no_reg_cutoff]/1e6, linestyle='-', color=color2, lw=1.25, label='OpInf with mild reg (r = {})'.format(r2))
 	# ax1.plot(t[training_end:], SD_OpInf_p_no_reg[pos1, training_end:]/1e6, linestyle=linestyle4, color=color2, lw=1.25)
 	ax1.set_xlabel('time [sec]')
 	ax1.set_ylabel('Probe 1: pressure [MPa]')
