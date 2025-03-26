@@ -69,3 +69,29 @@ def solve_opinf_difference_model(qhat0, n_steps_pred, dOpInf_red_model):
 	    contains_nans = True
 
 	return contains_nans, Qtilde.T
+
+def solve_opinf_difference_model_wefr(qhat0, n_steps_pred, dOpInf_red_model, fmode, chi):
+	"""
+	solve_opinf_difference_model solves the discrete OpInf ROM for n_steps_pred over the target time horizon (training + prediction)
+
+	:qhat0: 			reduced initial condition Qtilde0=np.matmul (Vr.T, q[:, 0]
+	:n_steps_pred: 		number of steps over the target time horizon to solve the OpInf reduced model
+	:dOpInf_red_model: 	dOpInf ROM
+
+	:return: contains_nan flag indicating NaN presence in in the Qtilde_train reduced solution, Qtilde
+	"""
+
+	Qtilde    		= np.zeros((np.size(qhat0), n_steps_pred))
+	contains_nans  	= False
+
+	Qtilde[:, 0] = qhat0
+	for i in range(n_steps_pred - 1):
+		Qtmp = dOpInf_red_model(Qtilde[:, i])
+		Qfilter = np.copy(Qtmp)
+		Qfilter[fmode:] = 0 # ROM projection filter
+		Qtilde[:, i + 1] = (1-chi)*Qtmp+ chi*Qfilter# Relax step
+
+	if np.any(np.isnan(Qtilde)):
+		contains_nans = True
+
+	return contains_nans, Qtilde.T
